@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>To-Do List</title>
+  </head>
+  <body style="background-color: rgb(207, 167, 233);">
+    <p style="font-size: 30px;color:black;margin-bottom: 20px;">To-Do List</p>
+    <input style="padding: 1%;" placeholder="Add a task"
+    class="js-name-input">
+    <button style="margin-top: 10px;padding: 1%;" onclick=
+addTodo();
+">Add</button> 
+
+<div class="js-todo-list"></div>
+    <script>
+        const todoList = [];
+
+function renderTodoList() {
+
+    let todoListHTML = '';
+    for(i=0; i < todoList.length; i++) {
+        const todo = todoList[i];
+        const html = `
+        <p>
+        ${todo} 
+        <button onclick = "
+        todoList.splice(${i}, 1);
+        renderTodoList();
+        ">Delete</button>
+        </p>
+        `;
+        todoListHTML += html;
+    }
+    console.log(todoListHTML);
+    document.querySelector('.js-todo-list').innerHTML = todoListHTML;
+}
+
+
+
+function addTodo() {
+    const inputElement = document.querySelector('.js-name-input')
+    const text = inputElement.value;
+    
+    todoList.push(text);
+    console.log(todoList);
+
+    inputElement.value = '';
+renderTodoList();
+}
+
+    </script>
+
+  </body>
+</html>
+ 
